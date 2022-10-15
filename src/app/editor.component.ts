@@ -17,15 +17,15 @@ declare var CodeMirror: any;
 
 })
 export class EditorComponent implements OnInit, AfterViewInit {
-    
-    
+
+
     options = {
         lineNumbers: true,
         // theme: 'material',
-        mode: 'javascript'
+        mode: 'mylang'
     }
     code: string = ''
-    
+
     @ViewChild(CodemirrorComponent, {static: false}) private cmComponent!: CodemirrorComponent;
 
     ngOnInit(): void {
@@ -35,19 +35,21 @@ export class EditorComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         setTimeout(
             () => {
-                const codeMirror = this.cmComponent.codeMirrorGlobal.__zone_symbol__value.default;
-                codeMirror.defineSimpleMode('ppnext', {
-                    start: [
-                        {regex: /(?:IF|ELSE|ENDIF|WHILE|ENDWHILE|FOR|TO|NEXT)\b/, token: "keyword"},
-                        {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i, token: "number"},
-                        {regex: /[-+\/*=<>!]+/, token: "operator"}
-                    ]
-                });
-                this.options = {
-                    lineNumbers: true,
-                    // theme: 'material',
-                    mode: 'ppnext'
-                }
+                // const codeMirror = this.cmComponent.codeMirrorGlobal.__zone_symbol__value.default;
+                // codeMirror.defineSimpleMode('ppnext', {
+                //     start: [
+                //         {regex: /(?:IF|ELSE|ENDIF|WHILE|ENDWHILE|FOR|TO|NEXT)\b/, token: "keyword"},
+                //         {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i, token: "number"},
+                //         {regex: /[-+\/*=<>!]+/, token: "operator"}
+                //     ]
+                // });
+                // this.options = {
+                //     lineNumbers: false,
+                //     // theme: 'material',
+                //     mode: 'ppnext'
+                // }
+
+
                 // const d = this.cmComponent.codeMirrorGlobal.__zone_symbol__value.default;
                 // console.log('defineSimpleMode------>', d.defineSimpleMode);
                 // console.log('------>', this.cmComponent.codeMirror);
@@ -55,7 +57,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
                 // console.log('CodeMirror: ', codeMirror);
             }
         );
-        
+
     }
-    
+
 }
